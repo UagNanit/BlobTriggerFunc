@@ -2,8 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using ReenbitTestTask.Data;
 using ReenbitTestTask.Repository;
 using ReenbitTestTask.Services;
+using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -14,8 +17,13 @@ builder.Services.AddSwaggerGen();
 // Add Azure Repository Service
 builder.Services.AddTransient<IAzureStorage, AzureStorage>();
 
-builder.Services.AddCors();
+
 builder.Services.AddControllers();
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddBlobServiceClient(builder.Configuration["BlobConnectionString:blob"], preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["BlobConnectionString:queue"], preferMsi: true);
+});
 
 var app = builder.Build();
 
@@ -37,7 +45,7 @@ app.UseCors(builder => builder
               .AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader()
-          //.AllowCredentials()
+              //.AllowCredentials()
           );
 
 app.UseAuthorization();

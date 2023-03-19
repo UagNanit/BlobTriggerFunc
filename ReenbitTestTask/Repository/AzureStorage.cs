@@ -17,7 +17,7 @@ namespace ReenbitTestTask.Repository
         public AzureStorage(IConfiguration configuration, ILogger<AzureStorage> logger)
         {
             _storageConnectionString = configuration.GetValue<string>("BlobConnectionString");
-            _storageContainerName = configuration.GetValue<string>("BlobContainerName");
+            _storageContainerName = "files-container";
             _logger = logger;
         }
 
