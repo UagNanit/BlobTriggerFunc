@@ -1,18 +1,6 @@
-using System;
-using System.IO;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
-using SendGrid.Helpers.Mail;
-using System.Text.Json;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
-using FunctionBLOBtrigger.Repository;
 using FunctionBLOBtrigger.Services;
-using System.Net;
-using System.Net.Mail;
-using System.Reflection.Metadata;
-using static System.Net.Mime.MediaTypeNames;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using FunctionBLOBtrigger.Data;
 
@@ -35,10 +23,10 @@ namespace FunctionBLOBtrigger
        
 
 
-        [Function("FunctionBlobTriggerSendEmail")]
+        [Function("FunctionBlobtrigger")]
          public async Task Run([BlobTrigger("files-container/{name}.{extension}", Connection = "BlobConnectionString")] string myBlob, Uri uri, string name, string extension)
          {
-             _logger.LogInformation($"C# Blob trigger function Processed blob \nName: {name} \nType: {extension} \nSize: {myBlob.Length} Bytes \n uri: {uri?.ToString()}");
+             _logger.LogInformation($"C# Blob trigger function Processed blob \nName: {name} \nType: {extension} \nSize: {myBlob.Length} Bytes \nUri: {uri?.ToString()}");
 
             var obj = _applicationContext.DbModelDatas.FirstOrDefaultAsync(d => d.FileName == name + "." + extension).Result;
             if (obj != null) { 
