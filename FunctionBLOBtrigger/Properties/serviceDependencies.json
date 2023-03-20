@@ -1,11 +1,13 @@
 {
   "dependencies": {
-    "secrets1": {
-      "type": "secrets"
-    },
     "storage2": {
       "type": "storage",
       "connectionId": "DefaultEndpointsProtocol=https;AccountName=nanitwebazurestoragea;AccountKey=Ec6AFISZgpEnq1WCAN9raBKntUn8w+fIyAWVxv0ugh7Uq+y+40cORKC11+JrxyTp7eQ5StRHaZ78+AStgDJ9Mw==;EndpointSuffix=core.windows.net",
+      "dynamicId": null
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:cs",
       "dynamicId": null
     },
     "storage1": {
@@ -16,9 +18,9 @@
       "type": "appInsights",
       "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
     },
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:cs",
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "VaultUri",
       "dynamicId": null
     }
   }

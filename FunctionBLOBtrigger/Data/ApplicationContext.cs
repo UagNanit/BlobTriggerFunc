@@ -2,15 +2,22 @@
 using System.Diagnostics.Contracts;
 using FunctionBLOBtrigger.Models;
 
+
 namespace FunctionBLOBtrigger.Data
 {
     public class ApplicationContext : DbContext
     {
         public DbSet<DbModelData> DbModelDatas { get; set; } = null!;
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
-            : base(options)
+        protected readonly string _connectionString;
+        public ApplicationContext(string connectionString) : base()
         {
-              // создаем базу данных при первом обращении
+            _connectionString = connectionString;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            // connect to sql server with connection string
+            options.UseSqlServer(_connectionString);
         }
     }
 

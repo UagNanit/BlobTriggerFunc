@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 
 public class Program
 {
-    private static string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+    //private static string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
     private static void Main(string[] args)
     {
         var host = new HostBuilder()
@@ -16,8 +16,8 @@ public class Program
     .ConfigureServices(s =>
     {
         
-        s.AddDbContext<ApplicationContext>(
-          options => options.UseSqlServer(connectionString));
+       /* s.AddDbContext<ApplicationContext>(
+          options => options.UseSqlServer(connectionString));*/
 
         s.AddSingleton<IEmailSender>((s) => { return new EmailSender(); });
     })
