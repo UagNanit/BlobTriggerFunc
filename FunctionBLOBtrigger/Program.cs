@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 public class Program
 {
     //private static string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
         var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
