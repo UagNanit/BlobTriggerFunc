@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "ReenbitTestTask20230319225051",
+      "defaultValue": "ReenbitTestTask20230320003938",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

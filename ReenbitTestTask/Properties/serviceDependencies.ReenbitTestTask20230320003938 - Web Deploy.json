@@ -15,7 +15,8 @@
       "secretStore": "AzureAppSettings",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/nanitwebazurestoragea",
       "type": "storage.azure",
-      "connectionId": "BlobConnectionString"
+      "connectionId": "BlobConnectionString",
+      "dynamicId": null
     }
   }
 }
