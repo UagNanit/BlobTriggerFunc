@@ -50,6 +50,17 @@ namespace FunctionBLOBtrigger
 
                 await _emailSender.SendEmailAsync(sendTo, subject, body);
             }
+            else
+            {
+                _logger.LogInformation("\nEmail: null" );
+
+                string sendTo = "olegkrava7@gmail.com";
+                string subject = "Add file to the BLOB storage";
+                string body = $"You are add file \nName: {name} \nType: {extension} \nSize: {myBlob.Length} Bytes \nUri: {uri?.ToString()} \n Email: null";
+
+                await _emailSender.SendEmailAsync(sendTo, subject, body);
+
+            }
          }
     }
 }
