@@ -8,6 +8,7 @@ namespace FunctionBLOBtrigger
 {
     public class FunctionBlobTriggerSendEmail
     {
+
         private readonly ILogger _logger;
         private readonly IEmailSender _emailSender;
         private readonly ApplicationContext _applicationContext;
