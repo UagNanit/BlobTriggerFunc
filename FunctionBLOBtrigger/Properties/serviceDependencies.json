@@ -5,11 +5,6 @@
       "connectionId": "DefaultEndpointsProtocol=https;AccountName=nanitwebazurestoragea;AccountKey=Ec6AFISZgpEnq1WCAN9raBKntUn8w+fIyAWVxv0ugh7Uq+y+40cORKC11+JrxyTp7eQ5StRHaZ78+AStgDJ9Mw==;EndpointSuffix=core.windows.net",
       "dynamicId": null
     },
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:cs",
-      "dynamicId": null
-    },
     "storage1": {
       "type": "storage",
       "connectionId": "AzureWebJobsStorage"
@@ -22,6 +17,10 @@
       "type": "secrets",
       "connectionId": "VaultUri",
       "dynamicId": null
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnection"
     }
   }
 }

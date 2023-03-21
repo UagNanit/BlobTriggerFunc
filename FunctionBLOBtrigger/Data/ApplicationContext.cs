@@ -9,17 +9,13 @@ namespace FunctionBLOBtrigger.Data
     {
         public DbSet<DbModelData> DbModelDatas { get; set; } = null!;
         protected readonly string _connectionString;
-        public ApplicationContext(string connectionString) : base()
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+            : base(options)
         {
-            _connectionString = connectionString;
+
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            // connect to sql server with connection string
-            options.UseSqlServer(_connectionString);
-        }
     }
 
-   
+
 }

@@ -12,15 +12,15 @@ namespace FunctionBLOBtrigger
 
         private readonly ILogger _logger;
         private readonly IEmailSender _emailSender;
-        //private readonly ApplicationContext _applicationContext;
-        private static string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+        private readonly ApplicationContext _applicationContext;
+        
 
 
-        public FunctionBlobTriggerSendEmail(ILoggerFactory loggerFactory, IEmailSender emailSender/*, ApplicationContext applicationContext*/)
+        public FunctionBlobTriggerSendEmail(ILoggerFactory loggerFactory, IEmailSender emailSender, ApplicationContext applicationContext)
         {
             _logger = loggerFactory.CreateLogger<FunctionBlobTriggerSendEmail>();
             _emailSender = emailSender;
-            //_applicationContext = applicationContext;
+            _applicationContext = applicationContext;
 
         }
        
@@ -31,8 +31,7 @@ namespace FunctionBLOBtrigger
          {
              _logger.LogInformation($"C# Blob trigger function Processed blob \nName: {name} \nType: {extension} \nSize: {myBlob.Length} Bytes \nUri: {uri?.ToString()}");
 
-            using (var _applicationContext = new ApplicationContext(connectionString))
-            {
+            
                 var obj = _applicationContext.DbModelDatas.FirstOrDefaultAsync(d => d.FileName == name + "." + extension).Result;
                 if (obj != null)
                 {
@@ -55,7 +54,7 @@ namespace FunctionBLOBtrigger
                     await _emailSender.SendEmailAsync(sendTo, subject, body);
 
                 }
-            }
+            
 
             
          }
